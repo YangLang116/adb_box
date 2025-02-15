@@ -1,0 +1,44 @@
+name: adb_box
+description: "adb tools for you"
+publish_to: 'none'
+version: 1.0.0+1
+environment:
+  sdk: ^3.5.3
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  window_manager: ^0.4.3
+  get: ^4.6.6
+  oktoast: ^3.4.0
+  file_picker: ^8.1.7
+  shared_preferences: ^2.3.5
+  basic_utils: ^5.7.0
+  easy_refresh: ^3.4.0
+  dropdown_button2: ^2.3.9
+  lifecycle: ^0.9.0
+  path_provider: ^2.1.5
+  image_size_getter: ^2.4.0
+  contextmenu: ^3.0.0
+  scroll_to_index: ^3.0.1
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: 5.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/icon_capture.png
+    - assets/images/icon_cmd.png
+    - assets/images/icon_cursor.png
+    - assets/images/icon_device.png
+    - assets/images/icon_logcat.png
+    - assets/images/icon_screenshot.png
+    - assets/images/icon_script.png
+    - assets/images/icon_search.png
+    - assets/images/icon_setting.png
+    - assets/images/icon_wifi.png
+    - assets/images/icon_window_close.png
+    - assets/images/icon_window_hide.png
+    - assets/images/icon_window_max.png
+    - assets/images/icon_window_min.png
