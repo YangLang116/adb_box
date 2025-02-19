@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:adb_box/core/constant/color_constant.dart';
 import 'package:adb_box/core/constant/font_constant.dart';
-import 'package:adb_box/core/widget/window_bar.dart';
+import 'package:adb_box/core/widget/platform_tool_bar.dart';
 import 'package:adb_box/core/widget/window_buttons_widget.dart';
 import 'package:adb_box/res/assets_res.dart';
 import 'package:adb_box/route/hall/hall_controller.dart';
@@ -17,15 +19,27 @@ class HallBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WindowBar(
-      lead: _buildLead(),
-      action: _buildActions(),
-    );
+    if (Platform.isMacOS) {
+      return MacosToolBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            _buildActions(),
+            _buildSlogan(margin: EdgeInsets.only(right: 16)),
+          ],
+        ),
+      );
+    } else {
+      return WindowsToolBar(
+        lead: _buildSlogan(margin: EdgeInsets.only(left: 16)),
+        action: _buildActions(),
+      );
+    }
   }
 
-  Widget _buildLead() {
+  Widget _buildSlogan({required EdgeInsets margin}) {
     return Container(
-      margin: EdgeInsets.only(left: 16),
+      margin: margin,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -65,7 +79,7 @@ class HallBar extends StatelessWidget implements PreferredSizeWidget {
           onTap: () => showWifiConnectDialog(controller),
         ),
         _buildDivider(),
-        _buildSetting(),
+        WindowButton(icon: AssetsRes.ICON_SETTING, onTap: showSettingDialog),
       ],
     );
   }
@@ -109,13 +123,6 @@ class HallBar extends StatelessWidget implements PreferredSizeWidget {
       height: 20,
       margin: EdgeInsets.only(left: 20, right: 10),
       color: ColorConstant.foreground.withOpacity(0.3),
-    );
-  }
-
-  Widget _buildSetting() {
-    return WindowButton(
-      icon: AssetsRes.ICON_SETTING,
-      onTap: showSettingDialog,
     );
   }
 
