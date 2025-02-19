@@ -29,7 +29,7 @@ class CmdToolBar extends StatelessWidget {
       children: [
         WindowOptionWidget(
           hint: 'Select Cmd',
-          selectItem: selectCmd,
+          current: selectCmd,
           dataList: controller.supportOptions,
           covert: (cmd) => cmd.name,
           onSelected: controller.onSelectCmd,

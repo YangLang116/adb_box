@@ -2,9 +2,17 @@ class Device {
   final String serial;
   final Map<String, String> meta;
 
-  String get deviceName => meta['device product'] ?? 'Unknown';
+  String get deviceName {
+    final productKey = meta.keys.firstWhere(
+      (key) => key.contains('product'),
+      orElse: () => '',
+    );
+    return productKey.isEmpty ? 'UnKnown' : meta[productKey]!;
+  }
 
   String get transportId => meta['transport_id'] ?? '0';
+
+  bool get isWifiConnect => serial.contains(':');
 
   Device(this.serial, this.meta);
 

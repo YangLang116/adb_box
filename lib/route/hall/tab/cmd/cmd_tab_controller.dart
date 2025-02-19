@@ -7,6 +7,7 @@ import 'package:adb_box/route/hall/tab/cmd/entity/cmd.dart';
 import 'package:adb_box/route/hall/tab/hall_tab_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:oktoast/oktoast.dart';
 
 final _supportOptions = [
   Cmd(
@@ -50,7 +51,10 @@ class CmdTabController extends HallTabController {
   }
 
   void executeCmd(Cmd selectCmd, [String? arg]) async {
-    if (!isConnected) return;
+    if (!isConnected) {
+      showToast('请选择设备');
+      return;
+    }
     final cmdList = <String>[
       if (selectCmd.value.isNotEmpty) selectCmd.value,
       if (arg?.trim().isNotEmpty == true) arg!,

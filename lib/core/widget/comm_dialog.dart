@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CommonDialog extends StatelessWidget {
   final double width;
   final double height;
-  final String icon;
+  final IconData icon;
   final String name;
   final Widget child;
 
@@ -47,7 +47,7 @@ class CommonDialog extends StatelessWidget {
 }
 
 class _Bar extends StatelessWidget implements PreferredSizeWidget {
-  final String icon;
+  final IconData icon;
   final String name;
 
   _Bar({required this.icon, required this.name});
@@ -60,21 +60,13 @@ class _Bar extends StatelessWidget implements PreferredSizeWidget {
       alignment: Alignment.centerLeft,
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          buildIcon(),
-          buildName(),
-        ],
+        children: [buildIcon(), SizedBox(width: 5), buildName()],
       ),
     );
   }
 
   Widget buildIcon() {
-    return Image.asset(
-      icon,
-      width: 30,
-      height: 30,
-      fit: BoxFit.cover,
-    );
+    return Icon(icon, size: 22, color: ColorConstant.foreground);
   }
 
   Widget buildName() {

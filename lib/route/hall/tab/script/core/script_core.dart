@@ -11,9 +11,7 @@ const TYPE_EXIT = '_exit';
 
 typedef Printer = void Function(String msg);
 
-abstract class Script {
-  String get name;
-
+abstract class ScriptCore {
   SendPort? _innerSender;
 
   void start(String adbPath, String serial, Console console) async {
@@ -49,9 +47,9 @@ abstract class Script {
     });
   }
 
-  void run(String serial, Printer sender);
-
   void stop() {
     _innerSender?.send({SCHEME_TYPE: TYPE_EXIT});
   }
+
+  void run(String serial, Printer printer);
 }

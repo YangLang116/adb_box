@@ -1,6 +1,7 @@
 import 'package:adb_box/core/constant/color_constant.dart';
+import 'package:adb_box/core/constant/font_constant.dart';
 import 'package:adb_box/core/widget/window_option_widget.dart';
-import 'package:adb_box/route/hall/tab/script/script/script.dart';
+import 'package:adb_box/route/hall/tab/script/core/script.dart';
 import 'package:adb_box/route/hall/tab/script/script_tab_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,12 +28,25 @@ class ScriptToolBar extends StatelessWidget {
       children: [
         WindowOptionWidget(
           hint: 'Select Script',
-          selectItem: selectScript,
+          current: selectScript,
           dataList: controller.supportScripts,
           covert: (script) => script.name,
           onSelected: controller.onSelectScript,
         ),
+        SizedBox(width: 5),
+        _buildDescription(selectScript),
       ],
+    );
+  }
+
+  Widget _buildDescription(Script? selectScript) {
+    return Text(
+      selectScript?.description ?? '',
+      style: TextStyle(
+        color: ColorConstant.hint,
+        fontSize: FontConstant.hint,
+        height: 1,
+      ),
     );
   }
 }

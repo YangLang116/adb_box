@@ -17,7 +17,6 @@ class AssetsRes {
   static const String ICON_SCRIPT = 'assets/images/icon_script.png';
   static const String ICON_SEARCH = 'assets/images/icon_search.png';
   static const String ICON_SETTING = 'assets/images/icon_setting.png';
-  static const String ICON_WIFI = 'assets/images/icon_wifi.png';
   static const String ICON_WINDOW_CLOSE = 'assets/images/icon_window_close.png';
   static const String ICON_WINDOW_HIDE = 'assets/images/icon_window_hide.png';
   static const String ICON_WINDOW_MAX = 'assets/images/icon_window_max.png';

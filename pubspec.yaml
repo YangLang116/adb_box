@@ -37,7 +37,6 @@ flutter:
     - assets/images/icon_script.png
     - assets/images/icon_search.png
     - assets/images/icon_setting.png
-    - assets/images/icon_wifi.png
     - assets/images/icon_window_close.png
     - assets/images/icon_window_hide.png
     - assets/images/icon_window_max.png

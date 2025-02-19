@@ -22,10 +22,14 @@ class AppManager {
     });
   }
 
-  Future<void> ensureInitialized() async {
-    await _ensureWindowReady();
+  Future<void> _ensureAdbReady() async {
     await SettingController.prepare();
     adb.setAdbPath(SettingController.share.adbPath);
+  }
+
+  Future<void> ensureInitialized() async {
+    await _ensureWindowReady();
+    await _ensureAdbReady();
   }
 }
 

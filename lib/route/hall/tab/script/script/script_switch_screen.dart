@@ -1,29 +1,28 @@
 import 'dart:math';
 
-import 'package:adb_box/core/adb/adb.dart';
-import 'package:adb_box/route/hall/tab/script/script/script.dart';
+import 'package:adb_box/route/hall/tab/script/core/script.dart';
 
-///拼多多自动滑屏，赚金币
 class ScriptSwitchScreen extends Script {
   @override
-  String get name => '看视频刷金币';
+  String get name => '定时切屏';
 
   @override
-  void run(String serial, Printer print) async {
+  String get description => '每间隔15-20s向上滑动屏幕';
+
+  @override
+  void execute() async {
     int count = 0;
     int startY = 1200;
     int endY = 600;
     Random random = Random();
     while (true) {
-      print('开始第 ${count += 1} 次切屏');
-
+      show('开始第 ${count += 1} 次切屏');
       int offset = 200 + random.nextInt(100);
-      print('当前切屏偏移量：$offset');
-      adb.inputSwipe(serial, offset, startY - offset, offset, endY - offset);
-
-      int waitTime = 15 + random.nextInt(10);
-      print('等待 ${waitTime} 秒');
-      await Future.delayed(Duration(seconds: waitTime));
+      show('当前切屏偏移量：$offset');
+      await swipe(offset, startY - offset, offset, endY - offset);
+      int waitTime = 15 + random.nextInt(5);
+      show('等待 ${waitTime} 秒');
+      await sleep(waitTime * 1000);
     }
   }
 }

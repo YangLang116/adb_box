@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:adb_box/core/adb/device/mixin_device.dart';
+import 'package:adb_box/core/adb/device/mixin_input.dart';
 import 'package:adb_box/core/adb/logcat/mixin_logcat.dart';
 import 'package:adb_box/core/adb/server/mixin_server.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,8 @@ abstract class AdbExecutor {
   }
 }
 
-class Adb extends AdbExecutor with ServerMixin, DeviceMixin, LogcatMixin {
+class Adb extends AdbExecutor
+    with ServerMixin, DeviceMixin, InputMixin, LogcatMixin {
   Adb._();
 
   String? _adbPath;

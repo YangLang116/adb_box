@@ -1,10 +1,11 @@
 import 'package:adb_box/core/widget/console/console_controller.dart';
 import 'package:adb_box/core/widget/console/widget/console_widget.dart';
 import 'package:adb_box/route/hall/tab/hall_tab_controller.dart';
-import 'package:adb_box/route/hall/tab/script/script/script.dart';
+import 'package:adb_box/route/hall/tab/script/core/script.dart';
 import 'package:adb_box/route/hall/tab/script/script/script_switch_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:oktoast/oktoast.dart';
 
 final _supportScripts = <Script>[
   ScriptSwitchScreen(),
@@ -22,7 +23,10 @@ class ScriptTabController extends HallTabController {
   Script? get selectScript => _rxSelectScript.value;
 
   void onSelectScript(Script script) {
-    if (!isConnected) return;
+    if (!isConnected) {
+      showToast('请选择设备');
+      return;
+    }
     selectScript?.stop();
     _consoleC.clear();
     _rxSelectScript.value = script;
