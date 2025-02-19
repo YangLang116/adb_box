@@ -18,7 +18,10 @@ class DeviceInfoCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AreaWidget(title: title, child: _buildItems());
+    return Container(
+      margin: EdgeInsets.only(bottom: 10),
+      child: AreaWidget(title: title, child: _buildItems()),
+    );
   }
 
   Widget _buildItems() {
@@ -48,7 +51,7 @@ class DeviceInfoCardWidget extends StatelessWidget {
               ),
               SizedBox(width: 5),
               Text(
-                meta.value ?? 'Unknown',
+                meta.value ?? 'UnKnown',
                 style: TextStyle(
                   fontSize: FontConstant.H4,
                   height: 1.6,

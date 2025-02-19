@@ -1,6 +1,7 @@
 import 'package:adb_box/core/constant/color_constant.dart';
 import 'package:adb_box/core/constant/font_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class InputWidget extends StatelessWidget {
   final String hint;
@@ -8,6 +9,7 @@ class InputWidget extends StatelessWidget {
   final Widget? prefixWidget;
   final FocusNode? focusNode;
   final TextEditingController? controller;
+  final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<String>? onSubmit;
 
   const InputWidget({
@@ -15,6 +17,7 @@ class InputWidget extends StatelessWidget {
     this.prefixIcon,
     this.prefixWidget,
     this.hint = '',
+    this.inputFormatters,
     this.focusNode,
     this.onSubmit,
     super.key,
@@ -60,9 +63,11 @@ class InputWidget extends StatelessWidget {
         cursorColor: ColorConstant.cursor,
         cursorHeight: 18,
         focusNode: focusNode,
+        inputFormatters: inputFormatters,
         style: TextStyle(
           fontSize: FontConstant.H2,
           color: ColorConstant.foreground,
+          height: 1.2,
         ),
         decoration: InputDecoration(
           isCollapsed: true,
@@ -71,6 +76,7 @@ class InputWidget extends StatelessWidget {
           hintStyle: TextStyle(
             color: ColorConstant.hint,
             fontSize: FontConstant.hint,
+            height: 1.2,
           ),
         ),
         onSubmitted: onSubmit,

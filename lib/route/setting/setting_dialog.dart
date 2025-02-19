@@ -5,7 +5,6 @@ import 'package:adb_box/core/widget/comm_area_widget.dart';
 import 'package:adb_box/core/widget/comm_button.dart';
 import 'package:adb_box/core/widget/comm_dialog.dart';
 import 'package:adb_box/core/widget/comm_path_select_widget.dart';
-import 'package:adb_box/res/assets_res.dart';
 import 'package:adb_box/route/setting/setting_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,15 +16,15 @@ void showSettingDialog() {
     builder: (ctx) => CommonDialog(
       width: 720,
       height: 480,
-      icon: AssetsRes.ICON_SETTING,
+      icon: Icons.settings,
       name: 'Settings',
-      child: _SettingWidget(),
+      child: _Dialog(),
     ),
   );
 }
 
-class _SettingWidget extends StatelessWidget {
-  const _SettingWidget();
+class _Dialog extends StatelessWidget {
+  const _Dialog();
 
   @override
   Widget build(BuildContext context) {

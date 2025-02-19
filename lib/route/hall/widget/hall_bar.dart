@@ -1,12 +1,12 @@
-import 'package:adb_box/core/adb/device/entity/device.dart';
 import 'package:adb_box/core/constant/color_constant.dart';
 import 'package:adb_box/core/constant/font_constant.dart';
 import 'package:adb_box/core/widget/window_bar.dart';
 import 'package:adb_box/core/widget/window_buttons_widget.dart';
-import 'package:adb_box/core/widget/window_option_widget.dart';
 import 'package:adb_box/res/assets_res.dart';
 import 'package:adb_box/route/hall/hall_controller.dart';
+import 'package:adb_box/route/hall/widget/device_option_widget.dart';
 import 'package:adb_box/route/setting/setting_dialog.dart';
+import 'package:adb_box/route/wifi/wifi_connect_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,12 +18,12 @@ class HallBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return WindowBar(
-      lead: buildLead(),
-      action: buildAction(),
+      lead: _buildLead(),
+      action: _buildActions(),
     );
   }
 
-  Widget buildLead() {
+  Widget _buildLead() {
     return Container(
       margin: EdgeInsets.only(left: 16),
       child: Row(
@@ -49,29 +49,61 @@ class HallBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget buildAction() {
+  Widget _buildActions() {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: [buildDeviceList(), buildDivider(), buildSetting()],
+      children: [
+        _buildDeviceList(),
+        SizedBox(width: 5),
+        _buildDeviceAction(
+          icon: Icons.refresh,
+          onTap: controller.refreshDeviceList,
+        ),
+        SizedBox(width: 5),
+        _buildDeviceAction(
+          icon: Icons.wifi,
+          onTap: () => showWifiConnectDialog(controller),
+        ),
+        _buildDivider(),
+        _buildSetting(),
+      ],
     );
   }
 
-  Widget buildDeviceList() {
+  Widget _buildDeviceList() {
     return Obx(() {
       final selectDevice = controller.selectDevice;
       final deviceList = controller.deviceList;
-      return WindowOptionWidget<Device>(
-        selectItem: selectDevice,
+      return DeviceOptionWidget(
+        current: selectDevice,
         dataList: deviceList,
         hint: 'Select Device',
-        showBorder: false,
         covert: (device) => device.deviceName,
         onSelected: controller.onDeviceSelected,
       );
     });
   }
 
-  Widget buildDivider() {
+  Widget _buildDeviceAction({
+    required IconData icon,
+    required GestureTapCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 32,
+        height: 32,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: ColorConstant.background,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Icon(icon, size: 20, color: ColorConstant.foreground),
+      ),
+    );
+  }
+
+  Widget _buildDivider() {
     return Container(
       width: 0.5,
       height: 20,
@@ -80,8 +112,11 @@ class HallBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget buildSetting() {
-    return WindowButton(icon: AssetsRes.ICON_SETTING, onTap: showSettingDialog);
+  Widget _buildSetting() {
+    return WindowButton(
+      icon: AssetsRes.ICON_SETTING,
+      onTap: showSettingDialog,
+    );
   }
 
   @override

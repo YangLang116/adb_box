@@ -4,7 +4,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 class WindowOptionWidget<T> extends StatelessWidget {
-  final T? selectItem;
+  final T? current;
   final List<T> dataList;
   final String hint;
   final double width;
@@ -14,7 +14,7 @@ class WindowOptionWidget<T> extends StatelessWidget {
 
   const WindowOptionWidget({
     super.key,
-    required this.selectItem,
+    required this.current,
     required this.dataList,
     required this.hint,
     this.width = 160,
@@ -28,9 +28,9 @@ class WindowOptionWidget<T> extends StatelessWidget {
     return DropdownButtonHideUnderline(
       child: DropdownButton2<T>(
         isExpanded: true,
-        value: selectItem,
+        value: current,
         onChanged: (value) {
-          if (value != null && value != selectItem) {
+          if (value != null && value != current) {
             onSelected.call(value);
           }
         },
@@ -57,11 +57,11 @@ class WindowOptionWidget<T> extends StatelessWidget {
 
   List<DropdownMenuItem<T>> _buildItems() {
     return dataList.map((item) {
-      return DropdownMenuItem<T>(value: item, child: _buildItem(item));
+      return DropdownMenuItem<T>(value: item, child: buildItem(item));
     }).toList();
   }
 
-  Widget _buildItem(T item) {
+  Widget buildItem(T item) {
     return Center(
       child: Text(
         covert.call(item),

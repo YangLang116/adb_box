@@ -63,7 +63,7 @@ class LogcatFilterWidget extends StatelessWidget {
     return Obx(() {
       final rxLevel = controller.rxSearchLevel;
       return WindowOptionWidget<LogLevel>(
-        selectItem: rxLevel.value,
+        current: rxLevel.value,
         dataList: LogLevel.values,
         hint: 'Select Level',
         width: 120,
