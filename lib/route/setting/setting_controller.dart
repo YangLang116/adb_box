@@ -18,7 +18,8 @@ class SettingController extends GetxController {
       String rootPath = p.dirname(p.dirname(Platform.resolvedExecutable));
       return p.join(rootPath, "Resources");
     } else {
-      return p.dirname(Platform.resolvedExecutable);
+      String rootPath = p.dirname(Platform.resolvedExecutable);
+      return p.join(rootPath, 'platform_tools');
     }
   }
 
