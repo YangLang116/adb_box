@@ -3,6 +3,7 @@ import 'package:adb_box/core/widget/console/widget/console_widget.dart';
 import 'package:adb_box/route/hall/tab/hall_tab_controller.dart';
 import 'package:adb_box/route/hall/tab/script/core/script.dart';
 import 'package:adb_box/route/hall/tab/script/script/script_switch_screen.dart';
+import 'package:adb_box/route/setting/setting_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oktoast/oktoast.dart';
@@ -30,7 +31,7 @@ class ScriptTabController extends HallTabController {
     selectScript?.stop();
     _consoleC.clear();
     _rxSelectScript.value = script;
-    script.start(adbPath, serial, _consoleC);
+    script.start(SettingController.share.adbPath, serial, _consoleC);
   }
 
   @override

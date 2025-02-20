@@ -1,5 +1,7 @@
+import 'dart:io';
+
 class AdbConstant {
   AdbConstant._();
 
-  static const separator = '\r\n';
+  static String separator = Platform.isMacOS ? '\n' : '\r\n';
 }

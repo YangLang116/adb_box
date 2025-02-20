@@ -29,6 +29,7 @@
 		33CC11132044BFA00003C045 /* MainFlutterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC11122044BFA00003C045 /* MainFlutterWindow.swift */; };
 		4F0E758D75274D079123B197 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964AB0A154F1E21C9CE22116 /* Pods_Runner.framework */; };
 		D941B54E36EE02201AE14AB0 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD26DBD491A6EA112BC692B0 /* Pods_RunnerTests.framework */; };
+		EC654DF22D675FDB00982374 /* adb in Resources */ = {isa = PBXBuildFile; fileRef = EC654DF12D675FDB00982374 /* adb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		964AB0A154F1E21C9CE22116 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		C8882FF9D06A2138308AEF88 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		EC654DF12D675FDB00982374 /* adb */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = adb; sourceTree = "<group>"; };
 		FD26DBD491A6EA112BC692B0 /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -120,7 +122,6 @@
 				2C62C4E3E749C25D742C7D3B /* Pods-RunnerTests.release.xcconfig */,
 				2E0488B7891CF4B62FD80EF3 /* Pods-RunnerTests.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -146,6 +147,7 @@
 		33CC10E42044A3C60003C045 = {
 			isa = PBXGroup;
 			children = (
+				EC654DF12D675FDB00982374 /* adb */,
 				33FAB671232836740065AC1E /* Runner */,
 				33CEB47122A05771004F2AC0 /* Flutter */,
 				331C80D6294CF71000263BE5 /* RunnerTests */,
@@ -317,6 +319,7 @@
 			files = (
 				33CC10F32044A3C60003C045 /* Assets.xcassets in Resources */,
 				33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */,
+				EC654DF22D675FDB00982374 /* adb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 abstract class AdbExecutor {
   String? get adbPath;
 
-  final String executable = 'adb.exe';
+  final String executable = Platform.isMacOS ? 'adb' : 'adb.exe';
 
   Future<ProcessResult?> runCmd(List<String> cmdList, [String? serial]) async {
     if (adbPath == null) return null;

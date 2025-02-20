@@ -1,8 +1,7 @@
 import 'dart:io';
 
-import 'package:basic_utils/basic_utils.dart';
 import 'package:get/get.dart';
-import 'package:oktoast/oktoast.dart';
+import 'package:path/path.dart' as p;
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String _KEY_PATH = 'adb.path';
@@ -13,7 +12,14 @@ class SettingController extends GetxController {
   late SharedPreferencesWithCache _store;
 
   String get adbPath {
-    return _store.getString(_KEY_PATH) ?? Directory.current.path;
+    final cachePath = _store.getString(_KEY_PATH);
+    if (cachePath != null) return cachePath;
+    if (Platform.isMacOS) {
+      String rootPath = p.dirname(p.dirname(Platform.resolvedExecutable));
+      return p.join(rootPath, "Resources");
+    } else {
+      return p.dirname(Platform.resolvedExecutable);
+    }
   }
 
   static SettingController get share => Get.find<SettingController>();
@@ -27,15 +33,6 @@ class SettingController extends GetxController {
     _store = await SharedPreferencesWithCache.create(
       cacheOptions: SharedPreferencesWithCacheOptions(),
     );
-  }
-
-  bool ensureAdbExist() {
-    if (StringUtils.isNullOrEmpty(adbPath)) {
-      showToast('请配置ADB路径');
-      return false;
-    } else {
-      return true;
-    }
   }
 
   Future<void> setAdbPath(String path) async {
