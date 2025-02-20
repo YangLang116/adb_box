@@ -16,7 +16,7 @@ class SettingController extends GetxController {
     if (cachePath != null) return cachePath;
     if (Platform.isMacOS) {
       String rootPath = p.dirname(p.dirname(Platform.resolvedExecutable));
-      return p.join(rootPath, "Resources");
+      return p.join(rootPath, 'Resources', 'platform_tools');
     } else {
       return p.dirname(Platform.resolvedExecutable);
     }
