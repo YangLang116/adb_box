@@ -1,5 +1,5 @@
 name: adb_box
-description: "adb tools for you"
+description: "adb box for you"
 publish_to: 'none'
 version: 1.0.0+1
 environment:

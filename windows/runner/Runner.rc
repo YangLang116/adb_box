@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.xtu.adb" "\0"
-            VALUE "FileDescription", "adb tools" "\0"
+            VALUE "FileDescription", "adb box" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "adb tools" "\0"
+            VALUE "InternalName", "adb box" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.xtu.adb. All rights reserved." "\0"
-            VALUE "OriginalFilename", "adb_tools.exe" "\0"
-            VALUE "ProductName", "adb tools" "\0"
+            VALUE "OriginalFilename", "adb_box.exe" "\0"
+            VALUE "ProductName", "adb box" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

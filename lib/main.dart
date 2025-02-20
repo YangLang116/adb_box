@@ -22,7 +22,7 @@ class AdbApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Adb Tools',
+      title: 'adb box',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: ColorConstant.background,

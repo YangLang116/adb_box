@@ -56,7 +56,7 @@ class CmdToolBar extends StatelessWidget {
   Widget buildTextArg(Cmd selectCmd) {
     return InputWidget(
       hint: selectCmd.hint,
-      onSubmit: (arg) => controller.executeCmd(selectCmd, arg),
+      onSubmit: (arg) => controller.executeCmd(selectCmd, arg.trim()),
     );
   }
 

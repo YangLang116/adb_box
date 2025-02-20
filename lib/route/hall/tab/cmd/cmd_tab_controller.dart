@@ -44,8 +44,6 @@ class CmdTabController extends HallTabController {
   Widget get console => ConsoleWidget(_consoleC);
 
   void onSelectCmd(Cmd cmd) {
-    _shutdown();
-    _consoleC.clear();
     _rxSelectCmd.value = cmd;
     if (!cmd.needArg) executeCmd(cmd);
   }
@@ -55,9 +53,11 @@ class CmdTabController extends HallTabController {
       showToast('请选择设备');
       return;
     }
+    _shutdown();
+    _consoleC.clear();
     final cmdList = <String>[
       if (selectCmd.value.isNotEmpty) selectCmd.value,
-      if (arg?.trim().isNotEmpty == true) arg!,
+      if (arg?.isNotEmpty == true) ...arg!.split(' '),
     ];
     _process = await adb.listenCmd(
       serial: serial,

@@ -38,7 +38,7 @@ abstract class AdbExecutor {
     debugPrint('[cmd] start: ${cmdList}');
     Process process = await Process.start(
       executable,
-      [...cmdList, '-s', serial],
+      ['-s', serial, ...cmdList],
       runInShell: false,
       workingDirectory: adbPath,
     );

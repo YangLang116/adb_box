@@ -50,7 +50,7 @@ class HallBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           SizedBox(width: 10),
           Text(
-            'ADB Tools',
+            'adb box',
             style: TextStyle(
               color: ColorConstant.foreground,
               fontSize: FontConstant.H2,
