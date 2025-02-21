@@ -6,42 +6,32 @@ import 'package:adb_box/core/adb/device/mixin_input.dart';
 import 'package:adb_box/core/adb/logcat/mixin_logcat.dart';
 import 'package:adb_box/core/adb/server/mixin_server.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart' as p;
 
 abstract class AdbExecutor {
-  String? get adbPath;
-
-  final String executable = Platform.isMacOS ? 'adb' : 'adb.exe';
+  late String _executable;
 
   Future<ProcessResult?> runCmd(List<String> cmdList, [String? serial]) async {
-    if (adbPath == null) return null;
-    if (serial != null) {
-      cmdList.insertAll(0, ['-s', serial]);
-    }
+    if (serial != null) cmdList.insertAll(0, ['-s', serial]);
     debugPrint('[cmd] run: ${cmdList}');
+    final codec = Utf8Codec();
     return Process.run(
-      executable,
+      _executable,
       cmdList,
-      runInShell: false,
-      workingDirectory: adbPath,
-      stderrEncoding: Utf8Codec(),
-      stdoutEncoding: Utf8Codec(),
+      stderrEncoding: codec,
+      stdoutEncoding: codec,
     );
   }
 
   Future<Process?> listenCmd({
-    required String serial,
+    String? serial,
     required List<String> cmdList,
     required ValueChanged<String> onReceive,
     required ValueChanged<String> onError,
   }) async {
-    if (adbPath == null) return null;
+    if (serial != null) cmdList.insertAll(0, ['-s', serial]);
     debugPrint('[cmd] start: ${cmdList}');
-    Process process = await Process.start(
-      executable,
-      ['-s', serial, ...cmdList],
-      runInShell: false,
-      workingDirectory: adbPath,
-    );
+    Process process = await Process.start(_executable, cmdList);
     process.stdout.map(String.fromCharCodes).forEach(onReceive);
     process.stderr.map(String.fromCharCodes).forEach(onError);
     return process;
@@ -58,13 +48,8 @@ class Adb extends AdbExecutor
     with ServerMixin, DeviceMixin, InputMixin, LogcatMixin {
   Adb._();
 
-  String? _adbPath;
-
-  @override
-  String? get adbPath => _adbPath;
-
-  void setAdbPath(String path) {
-    _adbPath = path;
+  void setPath(String path) {
+    _executable = p.join(path, Platform.isWindows ? 'adb.exe' : 'adb');
   }
 }
 

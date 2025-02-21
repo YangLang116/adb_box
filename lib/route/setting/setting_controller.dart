@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:adb_box/core/adb/adb.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart' as p;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,8 +37,9 @@ class SettingController extends GetxController {
     );
   }
 
-  Future<void> setAdbPath(String path) async {
+  Future<void> updatePath(String path) async {
     if (path.isEmpty) return;
-    await _store.setString(_KEY_PATH, path);
+    _store.setString(_KEY_PATH, path);
+    adb.setPath(path);
   }
 }

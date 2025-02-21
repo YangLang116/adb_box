@@ -66,7 +66,7 @@ class _Dialog extends StatelessWidget {
         Expanded(
           child: PathSelectWidget(
             path: SettingController.share.adbPath,
-            onSubmit: SettingController.share.setAdbPath,
+            onSubmit: SettingController.share.updatePath,
           ),
         )
       ],

@@ -32,7 +32,7 @@ abstract class ScriptCore {
   }
 
   void _startScript(List args) {
-    adb.setAdbPath(args[0]);
+    adb.setPath(args[0]);
     SendPort mainSender = args[1];
     ReceivePort innerReceive = ReceivePort();
     innerReceive.listen((data) {

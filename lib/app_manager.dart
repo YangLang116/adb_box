@@ -24,7 +24,7 @@ class AppManager {
 
   Future<void> _ensureAdbReady() async {
     await SettingController.prepare();
-    adb.setAdbPath(SettingController.share.adbPath);
+    adb.setPath(SettingController.share.adbPath);
   }
 
   Future<void> ensureInitialized() async {

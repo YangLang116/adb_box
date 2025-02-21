@@ -94,6 +94,7 @@ class _LinkState extends State<Link> {
     final text = widget.text;
     return Container(
       width: FontConstant.H2 * text.length * 1.8,
+      height: FontConstant.H2,
       alignment: Alignment.center,
       child: Obx(() {
         bool isHover = _rxHover.value;
